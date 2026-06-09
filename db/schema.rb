@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_09_181635) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_09_190355) do
   create_table "devices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_devices_on_user_id"
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "device_id", null: false
+    t.decimal "humidity"
+    t.decimal "temperature"
+    t.datetime "updated_at", null: false
+    t.index ["device_id"], name: "index_measurements_on_device_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -37,5 +46,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_09_181635) do
   end
 
   add_foreign_key "devices", "users"
+  add_foreign_key "measurements", "devices"
   add_foreign_key "sessions", "users"
 end
