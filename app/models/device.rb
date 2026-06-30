@@ -1,3 +1,3 @@
 class Device < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, default: -> { Current.user }
 end
