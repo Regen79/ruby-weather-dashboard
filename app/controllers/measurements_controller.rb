@@ -1,70 +1,20 @@
 class MeasurementsController < ApplicationController
-  before_action :set_measurement, only: %i[ show edit update destroy ]
+  before_action :set_device, only: [ :index ]
 
   # GET /measurements or /measurements.json
   def index
-    @measurements = Measurement.all
-  end
-
-  # GET /measurements/1 or /measurements/1.json
-  def show
-  end
-
-  # GET /measurements/new
-  def new
-    @measurement = Measurement.new
-  end
-
-  # GET /measurements/1/edit
-  def edit
-  end
-
-  # POST /measurements or /measurements.json
-  def create
-    @measurement = Measurement.new(measurement_params)
+    @measurements = @device.measurements
 
     respond_to do |format|
-      if @measurement.save
-        format.html { redirect_to @measurement, notice: "Measurement was successfully created." }
-        format.json { render :show, status: :created, location: @measurement }
-      else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @measurement.errors, status: :unprocessable_content }
-      end
+      format.html
+      format.json {render json: @measurements}
     end
   end
 
-  # PATCH/PUT /measurements/1 or /measurements/1.json
-  def update
-    respond_to do |format|
-      if @measurement.update(measurement_params)
-        format.html { redirect_to @measurement, notice: "Measurement was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @measurement }
-      else
-        format.html { render :edit, status: :unprocessable_content }
-        format.json { render json: @measurement.errors, status: :unprocessable_content }
-      end
-    end
-  end
-
-  # DELETE /measurements/1 or /measurements/1.json
-  def destroy
-    @measurement.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to measurements_path, notice: "Measurement was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_measurement
-      @measurement = Measurement.find(params.expect(:id))
-    end
-
-    # Only allow a list of trusted parameters through.
-    def measurement_params
-      params.expect(measurement: [ :temperature, :humidity, :device_id ])
+    def set_device
+      @device = Current.user.devices.find(params[:device_id])
     end
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  resources :measurements
-  resources :devices
+  resources :devices do
+    resources :measurements
+  end
   resource :session
   resources :passwords, param: :token
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
