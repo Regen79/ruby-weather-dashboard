@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_09_190355) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_13_081849) do
   create_table "devices", force: :cascade do |t|
+    t.string "api_key"
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["api_key"], name: "index_devices_on_api_key", unique: true
     t.index ["user_id"], name: "index_devices_on_user_id"
   end
 
