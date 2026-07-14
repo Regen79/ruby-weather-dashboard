@@ -49,3 +49,4 @@ class DevicesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to devices_url
   end
 end
+
