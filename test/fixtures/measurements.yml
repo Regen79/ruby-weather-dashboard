@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  temperature: 9.99
+  humidity: 9.99
+  device: one
+
+two:
+  temperature: 9.99
+  humidity: 9.99
+  device: two
