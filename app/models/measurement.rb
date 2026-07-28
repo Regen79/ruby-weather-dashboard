@@ -6,7 +6,7 @@ class Measurement < ApplicationRecord
     less_than_or_equal_to: 60
   }
   validates :humidity, presence:true, numericality: {
-    gratehr_than_or_equal_to: 0,
-    less_than_or_eqal_to: 0
+    greather_than_or_equal_to: 0,
+    less_than_or_equal_to: 100
   }
 end

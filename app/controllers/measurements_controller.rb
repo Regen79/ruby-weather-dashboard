@@ -1,5 +1,8 @@
 class MeasurementsController < ApplicationController
-  before_action :set_device, only: [ :index ]
+  skip_before_action :verify_authenticity_token, only: [ :create ]
+  before_action :set_device_for_web, only: [ :index ]
+  before_action :set_device_by_token, only: [ :create ]
+
 
   # GET /measurements or /measurements.json
   def index
@@ -11,10 +14,37 @@ class MeasurementsController < ApplicationController
     end
   end
 
+  def create
+
+    @measurement=@device.measurements.build(measurement_params)
+    
+    respond_to do |format|
+      if @measurement.save
+        format.json {render json: @measurement, status: :created}
+      else
+        format.json {render json: @measurement.errors, status: :unprocessable_entity}
+      end
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_device
+    def set_device_for_web
       @device = Current.user.devices.find(params[:device_id])
     end
+    
+    
+    def set_device_by_token
+      token=request.headers["Authorization"]&.split(" ")&.last
+      @device=Device.find_by(api_key: token)
+
+      unless @device
+        render json: {error: "Incorrect Api token"}, status: :unauthorized
+      end
+    end
+        
+    def measurement_params
+      params.require(:measurement).permit(:temperature, :humidity)
+    end
 end
+  
