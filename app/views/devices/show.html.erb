@@ -3,6 +3,11 @@
 <%= render @device %>
 
 <div>
+  <strong>API token for this device:</strong><br>
+  <code><%= @device.api_key %></code>
+</div>
+
+<div>
   <%= link_to "Edit this device", edit_device_path(@device) %> |
   <%= link_to "Back to devices", devices_path %>
 

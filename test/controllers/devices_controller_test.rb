@@ -4,7 +4,8 @@ class DevicesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @device = devices(:one)
     @user = users(:one)
-    post session_path, params: { email_address: @user.email_address, password: "password" }
+
+    post session_url, params: { email_address: @user.email_address, password: "password" }
   end
 
   test "should get index" do
