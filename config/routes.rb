@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  #endpoint for esp
+  # endpoint for esp
   resources :measurements, only: [:create]
   
-  #endpoint for web
+  # endpoint for web
   resources :devices do
     resources :measurements, only: [:index]
   end
