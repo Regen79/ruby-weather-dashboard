@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  #endpoint for esp
+  resources :measurements, only: [:create]
+  
+  #endpoint for web
   resources :devices do
-    resources :measurements
+    resources :measurements, only: [:index]
   end
   resource :session
   resources :passwords, param: :token
