@@ -11,7 +11,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render json: @measurements}
+      format.json { render json: @measurements }
     end
   end
 
@@ -33,18 +33,17 @@ class MeasurementsController < ApplicationController
     def set_device_for_web
       @device = Current.user.devices.find(params[:device_id])
     end
-    
+
     def set_device_by_token
       token=request.headers["Authorization"]&.split(" ")&.last
       @device=Device.find_by(api_key: token)
 
       unless @device
-        render json: {error: "Incorrect Api token"}, status: :unauthorized
+        render json: { error: "Incorrect Api token" }, status: :unauthorized
       end
     end
-        
+
     def measurement_params
       params.require(:measurement).permit(:temperature, :humidity)
     end
 end
-  
