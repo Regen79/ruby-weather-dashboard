@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # endpoint for web
   resources :devices do
-    resources :measurements, only: [ :index ]
+    resources :measurements, only: [ :index,  ]
   end
   resource :session
   resources :passwords, param: :token
