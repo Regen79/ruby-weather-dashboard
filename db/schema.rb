@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_13_081849) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_25_071454) do
   create_table "devices", force: :cascade do |t|
     t.string "api_key"
     t.datetime "created_at", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_13_081849) do
     t.string "email_address", null: false
     t.string "password_digest", null: false
     t.datetime "updated_at", null: false
+    t.boolean "verified", default: false, null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

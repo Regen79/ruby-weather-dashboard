@@ -9,4 +9,7 @@ class User < ApplicationRecord
     with: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)/,
     message: "must include at least one lowercase letter, one uppercase letter, digit,  and one special character"
   }, if: -> { password.present? }
+  generates_token_for :email_verification, expires_in: 2.days do
+    email_address
+  end
 end

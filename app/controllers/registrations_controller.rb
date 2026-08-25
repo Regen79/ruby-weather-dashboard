@@ -7,6 +7,7 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
       if @user.save
+        UserMailer.verification(@user).deliver_now
         redirect_to new_session_path, notice: "Account created! Please check your email."
       else
         render :new, status: :unprocessable_content
