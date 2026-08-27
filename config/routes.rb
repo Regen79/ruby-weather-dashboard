@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   # for web
   resources :devices do
-    resources :measurements, only: [ :index ]
+    resources :measurements
   end
   resource :session
   resources :passwords, param: :token
