@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  # for esp
+  namespace :api do
+    resources :measurements, only: [ :create ]
+  end
+
+  # for web
   resources :devices do
     resources :measurements
   end
