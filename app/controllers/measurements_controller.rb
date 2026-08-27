@@ -7,7 +7,7 @@ class MeasurementsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render json: @measurements}
+      format.json { render json: @measurements }
     end
   end
 
