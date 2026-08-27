@@ -15,27 +15,9 @@ class MeasurementsController < ApplicationController
   def show
   end
 
-  # GET /devices/new
-  def new
-    @measurement = @device.measurements.build
-  end
 
   # GET /devices/1/edit
   def edit
-  end
-
-  def create
-    @measurement = @device.measurements.build(measurement_params)
-
-    respond_to do |format|
-      if @measurement.save
-        format.html { redirect_to device_measurement_path(@device), notice: "Measurement was successfully created." }
-        format.json { render :show, status: :created, location: @measurement }
-      else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @measurement.errors, status: :unprocessable_content }
-      end
-    end
   end
 
   # PATCH/PUT /devices/1 or /devices/1.json
