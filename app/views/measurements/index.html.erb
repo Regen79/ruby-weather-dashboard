@@ -41,15 +41,15 @@
 <%= line_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.temperature] }, area: true, suffix: " °C" %>
 
 <h4>Humidity</h4>
-<%= column_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.humidity] }, suffix: " %" %>
+<%= line_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.humidity] }, suffix: " %" %>
 
 
 
 <h4>Average Monthly Temperature</h4>
-<%= column_chart @monthly_temperatures, suffix: " °C" %>
+<%= line_chart @monthly_temperatures, suffix: " °C" %>
 
 <h4>Average Monthly Humidity</h4>
-<%= column_chart @monthly_humidities, suffix: " %" %>
+<%= line_chart @monthly_humidities, suffix: " %" %>
 
 
 
