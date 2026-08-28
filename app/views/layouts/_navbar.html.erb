@@ -1,0 +1,8 @@
+<% if authenticated? %>
+    <nav>
+        <%= link_to "Home", devices_path %>
+        <%= link_to "Profile", profile_path %>
+        <%= button_to "Logout", session_path, method: :delete %>
+    </nav>
+<% end %>
+

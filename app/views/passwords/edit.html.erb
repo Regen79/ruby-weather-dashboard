@@ -1,3 +1,18 @@
+<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
+<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+
+<% if @user.errors.any? %>
+  <div style="color: red; margin-bottom: 15px;">
+    <p><strong>Please fix the following errors:</strong></p>
+    <ul>
+      <% @user.errors.full_messages.each do |mess| %>
+        <li><%= mess %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <h1>Update your password</h1>
 
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
