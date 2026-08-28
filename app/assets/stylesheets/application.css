@@ -1,13 +1,106 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
-a {
+/* Globalne ustawienia dla całej aplikacji (Dark Mode) */
+body {
+  background-color: #121214;
+  color: #e1e1e6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Główne kontenery i karty (centrowane formularze) */
+.auth-container, .form-card {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 32px;
+  background-color: #202024;
+  border: 1px solid #29292e;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Nagłówki */
+h1, h2, h3 {
+  color: #f7f7f8;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+/* Pola tekstowe i formularze */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 8px 0 20px 0;
+  background-color: #121214;
+  border: 1px solid #29292e;
+  border-radius: 8px;
+  color: #f7f7f8;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #f59e0b; /* Pomarańczowy akcent IoT */
+}
+
+/* Etykiety */
+label {
+  font-size: 14px;
+  color: #a8a8b3;
+  font-weight: 500;
+}
+
+/* Przyciski */
+button, input[type="submit"], .btn-primary {
+  background-color: #f59e0b;
+  color: #121214;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
   text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+button:hover, input[type="submit"]:hover, .btn-primary:hover {
+  background-color: #d97706;
+}
+
+/* Linki */
+a {
+  color: #f59e0b;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Pomocnicza klasa do linków pod formularzem */
+.auth-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.auth-links-center {
+  margin-top: 20px;
+  text-align: center;
 }

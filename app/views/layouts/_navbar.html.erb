@@ -1,4 +1,4 @@
-<% if authenticated? %>
+<% if authenticated? && controller_name !='sessions' && controller_name !='registrations' && controller_name !='passwords' %>
     <nav>
         <%= link_to "Home", devices_path %>
         <%= link_to "Profile", profile_path %>
