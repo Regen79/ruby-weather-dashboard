@@ -1,8 +1,8 @@
 <div class="auth-container">
   <h2>Sign in</h2>
-
-  <%= tag.div(flash[:alert], style: "color: #f87171; margin-bottom: 15px;") if flash[:alert] %>
-  <%= tag.div(flash[:notice], style: "color: #34d399; margin-bottom: 15px;") if flash[:notice] %>
+  
+  <%= tag.div(flash[:alert], class: "flash-alert") if flash[:alert] %>
+  <%= tag.div(flash[:notice], class: "flash-notice") if flash[:notice] %>
 
   <%= form_with url: session_path do |form| %>
     <div>
