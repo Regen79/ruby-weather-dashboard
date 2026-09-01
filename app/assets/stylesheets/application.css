@@ -1,4 +1,3 @@
-/* Globalne ustawienia dla całej aplikacji (Dark Mode) */
 body {
   background-color: #121214;
   color: #e1e1e6;
@@ -9,8 +8,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
-/* Główne kontenery i karty (centrowane formularze) */
+/* FORMS AUTHENTICATION, REGISTRATION, FORGOT */
 .auth-container, .form-card {
   max-width: 420px;
   margin: 60px auto;
@@ -21,14 +19,13 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-/* Nagłówki */
+
 h1, h2, h3 {
   color: #f7f7f8;
   font-weight: 600;
   margin-top: 0;
 }
 
-/* Pola tekstowe i formularze */
 input[type="email"],
 input[type="password"],
 input[type="text"],
@@ -49,17 +46,15 @@ textarea {
 
 input:focus {
   outline: none;
-  border-color: #f59e0b; /* Pomarańczowy akcent IoT */
+  border-color: #f59e0b;
 }
 
-/* Etykiety */
 label {
   font-size: 14px;
   color: #a8a8b3;
   font-weight: 500;
 }
 
-/* Przyciski */
 button, input[type="submit"], .btn-primary {
   background-color: #f59e0b;
   color: #121214;
@@ -81,18 +76,12 @@ button:hover, input[type="submit"]:hover, .btn-primary:hover {
   background-color: #d97706;
 }
 
-/* Linki */
-a {
+a, a:visited {
   color: #f59e0b;
   text-decoration: none;
   font-size: 14px;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Pomocnicza klasa do linków pod formularzem */
 .auth-links {
   margin-top: 20px;
   display: flex;
@@ -104,7 +93,8 @@ a:hover {
   margin-top: 20px;
   text-align: center;
 }
-/* Style dla komunikatów flash i błędów walidacji */
+
+/* ALERT, NOTICE, EXPLANATION */
 .flash-alert {
   color: #f87171;
   margin-bottom: 15px;
@@ -135,4 +125,339 @@ a:hover {
 .error-explanation ul {
   margin: 0;
   padding-left: 20px;
+}
+
+/* NAVBAR */
+.app-navbar {
+  background-color: #0f172a;
+  border-bottom: 1px solid #1e293b;
+  padding: 16px 0;
+  margin-bottom: 5px;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar-brand {
+  color: #f8fafc;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar-brand:hover {
+  color: #f8fafc;
+}
+
+.navbar-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-link:hover {
+  color: #f8fafc;
+}
+
+.btn-logout {
+  background-color: transparent;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border-color: #475569;
+}
+
+/* DEVICE INDEX,  EDIT */
+.dashboard-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.dashboard-title {
+  color: #f8fafc;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.device-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.device-card:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
+}
+
+.device-card p {
+  color: #94a3b8;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.device-card strong, .device-card b {
+  color: #e2e8f0;
+}
+
+.device-actions {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #334155;
+}
+
+.btn-primary {
+  background-color: #f59e0b !important;
+  color: #0f172a !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700 !important;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.2);
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #d97706;
+}
+
+.btn-secondary {
+  color: #f59e0b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dashboard-header .btn-primary {
+  width: auto;
+}
+
+/* DEVICE SHOW */
+.device-details-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+}
+
+.back-link-container {
+  margin-bottom: 30px;
+}
+
+.api-key-box {
+  margin-top: 20px;
+  padding: 16px;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
+
+.api-key-box code {
+  color: #34d399;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.device-show-actions {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Styl dla przycisku usuwania, aby wyglądał jak link */
+.btn-danger {
+  background-color: transparent !important;
+  color: #ef4444 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  display: inline !important;
+  text-decoration: none !important; /* Wyłącza podkreślenie domyślnie */
+}
+
+.btn-danger:hover {
+  background-color: transparent !important;
+  color: #dc2626 !important;
+  text-decoration: none !important; /* Wyłącza podkreślenie również po najechaniu myszką */
+}
+
+/* MEASUREMENTS INDEX */
+/* Karta główna – usuwamy overflow: hidden, żeby nie ucinała góry */
+/* Główna karta */
+.measurement-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+
+/* Kontener tabeli – wymuszamy ukrywanie wystających elementów w rogach */
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden; /* Ukrywa wystające kanty w poziomie */
+  border-radius: 12px; /* Zaokrągla całe okno tabeli */
+  position: relative;  /* Tworzy kontekst pozycjonowania dla nagłówka */
+}
+/* Wygląd tabeli */
+.measurements-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.measurements-table th {
+  position: sticky;
+  top: 0;
+  background-color: #334155; /* Elegancki, stonowany grafit z obramowań */
+  color: #f8fafc;            /* Jasny, czytelny tekst */
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 16px;
+  z-index: 1;
+  border-bottom: 2px solid #475569;
+}
+
+.measurements-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #334155;
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+/* Delikatne podświetlenie wiersza przy najechaniu */
+.measurements-table tr:hover td {
+  background-color: #1e293b;
+  filter: brightness(1.2);
+}
+
+
+/* Linki wewnątrz tabeli */
+.row-link, .row-link:visited{
+  color: inherit;
+  text-decoration: none;
+  display: block; /* Żeby cały obszar komórki był klikalny */
+}
+
+.row-link:hover {
+  color: #f59e0b;
+}
+
+/* =========================================
+   WYKRESY I FILTRY (PLOTS)
+========================================= */
+
+/* Przyciski dni tygodnia */
+.day-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap; /* Zwijanie na małych ekranach */
+}
+
+.day-btn, .day-btn:visited {
+  background-color: #1e293b;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.day-btn:hover {
+  border-color: #475569;
+  color: #e2e8f0;
+}
+
+/* Aktywny dzień tygodnia */
+.day-btn.active {
+  background-color: #f59e0b;
+  color: #0f172a;
+  border-color: #f59e0b;
+  font-weight: 600;
+}
+
+/* Siatka na wykresy (2 kolumny) */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 24px;
+}
+
+.chart-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.chart-title {
+  color: #e2e8f0;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 10px;
 }

@@ -1,38 +1,48 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<% content_for :title, "Change your password" %>
 
-<% if @user.errors.any? %>
-  <div style="color: red; margin-bottom: 15px;">
-    <p><strong>Please fix the following errors:</strong></p>
-    <ul>
-      <% @user.errors.full_messages.each do |mess| %>
-        <li><%= mess %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-
-<h1>Change your password</h1>
-
-<%= form_with model: @user, url: profile_path, method: :put do |form| %>
-  <div>
-    <%= form.label :password_challenge, "Current password" %>
-    <%= form.password_field :password_challenge, required: true, autofocus: true %>
+<div class="dashboard-container">
+  <div class="back-link-container">
+    <%= link_to "← Return", profile_path, class: "btn-secondary" %>
   </div>
 
-  <div>
-    <%= form.label :password %>
-    <%= form.password_field :password, required: true %>
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Change your password</h1>
   </div>
 
-  <div>
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, required: true %>
-  </div>
+  <div class="device-details-card">
+    <%= tag.div(flash[:alert], class: "flash-alert") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "flash-notice") if flash[:notice] %>
 
-  <div>
-    <%= form.submit "Save" %>
+    <% if @user.errors.any? %>
+      <div class="error-explanation">
+        <p>Please fix the following errors:</p>
+        <ul>
+          <% @user.errors.full_messages.each do |mess| %>
+            <li><%= mess %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, url: profile_path, method: :put do |form| %>
+      <div>
+        <%= form.label :password_challenge, "Current password" %>
+        <%= form.password_field :password_challenge, required: true, autofocus: true %>
+      </div>
+
+      <div>
+        <%= form.label :password %>
+        <%= form.password_field :password, required: true %>
+      </div>
+
+      <div>
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, required: true %>
+      </div>
+
+      <div>
+        <%= form.submit "Save" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-  
+</div>

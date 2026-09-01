@@ -1,16 +1,23 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Devices" %>
 
-<h1>Devices</h1>
-
-<div id="devices">
-  <% @devices.each do |device| %>
-    <%= render device %>
-    <p>
-      <%= link_to "Show this device", device %>
-    </p>
+<div class="dashboard-container">
+  <% if notice.present? %>
+    <p class="flash-notice"><%= notice %></p>
   <% end %>
-</div>
 
-<%= link_to "New device", new_device_path %>
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Devices</h1>
+    <%= link_to "New device", new_device_path, class: "btn-primary" %>
+  </div>
+
+  <div class="devices-grid" id="devices">
+    <% @devices.each do |device| %>
+      <div class="device-card">
+        <%= render device %>
+        <div class="device-actions">
+          <%= link_to "Show this device", device, class: "btn-secondary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,58 +1,71 @@
-<h1>Measurements for <%= @device.name %></h1>
-<%= link_to "Back to device", device_path(@device) %>
+<% content_for :title, "Measurements for #{@device.name}" %>
 
+<div class="dashboard-container">
+  <div class="back-link-container">
+    <%= link_to "← Return", device_path(@device), class: "btn-secondary" %>
+  </div>
 
-<div style="max-height: 400px; overflow-y: auto; border: 1px solid #444; border-radius: 4px;">
-  <table style="width: 100%; border-collapse: collapse;">
-    <thead>
-      <tr style="position: sticky; top: 0; background: #222; z-index: 1;">
-        <th style="padding: 10px; text-align: left;">Date</th>
-        <th style="padding: 10px; text-align: left;">Time</th>
-        <th style="padding: 10px; text-align: left;">Temperature</th>
-        <th style="padding: 10px; text-align: left;">Humidity</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @measurements.order(created_at: :desc).each do |measurement| %>
-        <tr style="border-bottom: 1px solid #333;">
-          <td style="padding: 8px;"><%= link_to measurement.created_at.strftime("%Y-%m-%d"), device_measurement_path(@device, measurement), class: "row-link" %></td>
-          <td style="padding: 8px;"><%= link_to measurement.created_at.strftime("%H:%M:%S"), device_measurement_path(@device, measurement), class: "row-link" %></td>
-          <td style="padding: 8px;"><%= link_to measurement.temperature, device_measurement_path(@device, measurement), class: "row-link" %></td>
-          <td style="padding: 8px;"><%= link_to measurement.humidity, device_measurement_path(@device, measurement), class: "row-link" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Measurements for <%= @device.name %></h1>
+  </div>
+
+  <div class="measurement-card">
+    <div class="table-container">
+      <table class="measurements-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @measurements.order(created_at: :desc).each do |measurement| %>
+            <tr>
+              <td><%= link_to measurement.created_at.strftime("%Y-%m-%d"), device_measurement_path(@device, measurement), class: "row-link" %></td>
+              <td><%= link_to measurement.created_at.strftime("%H:%M:%S"), device_measurement_path(@device, measurement), class: "row-link" %></td>
+              <td><%= link_to measurement.temperature, device_measurement_path(@device, measurement), class: "row-link" %></td>
+              <td><%= link_to measurement.humidity, device_measurement_path(@device, measurement), class: "row-link" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="dashboard-header" style="margin-top: 40px;">
+    <h2 class="dashboard-title">Measurement Plots</h2>
+  </div>
+
+  <div class="day-filters">
+    <% (Date.current.beginning_of_week(:monday)..Date.current.end_of_week(:monday)).each do |day| %>
+      <% is_active = (params[:day].present? ? params[:day] == day.to_s : day == Date.current) %>
+      <%= link_to day.strftime("%A"), 
+                  device_measurements_path(@device, day: day), 
+                  class: "day-btn #{is_active ? 'active' : ''}" %>  
+    <% end %>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h4 class="chart-title">Temperature</h4>
+      <%= line_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.temperature] }, area: true, suffix: " °C", colors: ["#f59e0b"] %>
+    </div>
+
+    <div class="chart-card">
+      <h4 class="chart-title">Humidity</h4>
+      <%= line_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.humidity] }, suffix: " %", colors: ["#3b82f6"] %>
+    </div>
+
+    <div class="chart-card">
+      <h4 class="chart-title">Average Monthly Temperature</h4>
+      <%= line_chart @monthly_temperatures, suffix: " °C", colors: ["#f59e0b"] %>
+    </div>
+
+    <div class="chart-card">
+      <h4 class="chart-title">Average Monthly Humidity</h4>
+      <%= line_chart @monthly_humidities, suffix: " %", colors: ["#3b82f6"] %>
+    </div>
+  </div>
 </div>
-
-<h3>Measurement Plots</h3>
-
-<div style="margin-bottom: 20px; display: flex; gap: 10px;">
-  <% (Date.current.beginning_of_week(:monday)..Date.current.end_of_week(:monday)).each do |day| %>
-    <% is_active = (params[:day].present? ? params[:day] == day.to_s : day == Date.current)%>
-    <%= link_to day.strftime("%A"), 
-      device_measurements_path(@device, day: day), 
-      class: "button",
-      style: (is_active ? "background-color: #f59e0b; color: white; font-weight: bold;" : "background-color: #333; color: #ccc;") %>  
-  <% end %>
-</div>
-
-<h4>Temperature</h4>
-<%= line_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.temperature] }, area: true, suffix: " °C" %>
-
-<h4>Humidity</h4>
-<%= line_chart @filtered_measurements.map { |m| [m.created_at.strftime("%H:%M"), m.humidity] }, suffix: " %" %>
-
-
-
-<h4>Average Monthly Temperature</h4>
-<%= line_chart @monthly_temperatures, suffix: " °C" %>
-
-<h4>Average Monthly Humidity</h4>
-<%= line_chart @monthly_humidities, suffix: " %" %>
-
-
-
-
-
-
