@@ -1,14 +1,15 @@
 <div class="dashboard-container">
-  <% if notice.present? %>
-    <p class="flash-notice"><%= notice %></p>
-  <% end %>
-  
-  <div class="back-link-container">
-    <%= link_to "← Return", devices_path, class: "btn-secondary" %>
-  </div>
+  <div class="content-header">
+    <% if notice.present? %>
+      <p class="flash-notice"><%= notice %></p>
+    <% end %>
+    <div class="back-link-container">
+      <%= link_to "← Return", devices_path, class: "btn-back" %>
+    </div>
 
-  <div class="dashboard-header">
-    <h1 class="dashboard-title">Device details</h1>
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Device details</h1>
+    </div>
   </div>
 
   <div class="device-details-card">
@@ -26,7 +27,7 @@
     <div class="device-show-actions">
       <%= link_to "View measurements", device_measurements_path(@device), class: "btn-primary" %>
       <%= link_to "Edit this device", edit_device_path(@device), class: "btn-secondary" %>
-      <%= button_to "Destroy this device", @device, method: :delete, class: "btn-danger" %>
+      <%= button_to "Destroy this device", @device, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-danger" %>
     </div>
   </div>
 </div>  

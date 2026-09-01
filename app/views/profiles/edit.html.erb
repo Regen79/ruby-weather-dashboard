@@ -1,17 +1,20 @@
 <% content_for :title, "Change your password" %>
 
 <div class="dashboard-container">
-  <div class="back-link-container">
-    <%= link_to "← Return", profile_path, class: "btn-secondary" %>
-  </div>
+  <div class="content-header">
+    <div class="back-link-container">
+      <%= link_to "← Return", profile_path, class: "btn-back" %>
+    </div>
 
-  <div class="dashboard-header">
-    <h1 class="dashboard-title">Change your password</h1>
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Change your password</h1>
+    </div>
+    <%= tag.div(flash[:alert], class: "flash-alert") if flash[:alert] %>
+    <%= tag.div(flash[:notice], class: "flash-notice") if flash[:notice] %>
   </div>
 
   <div class="device-details-card">
-    <%= tag.div(flash[:alert], class: "flash-alert") if flash[:alert] %>
-    <%= tag.div(flash[:notice], class: "flash-notice") if flash[:notice] %>
+    
 
     <% if @user.errors.any? %>
       <div class="error-explanation">
