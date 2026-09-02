@@ -10,17 +10,7 @@ class MeasurementsController < ApplicationController
     else
       selected_day=Date.current
     end
-    @daily_measurements = @device.measurements.where(created_at: selected_day.beginning_of_day..selected_day.end_of_day)
-    max_points = 20
-    total_count = @daily_measurements.count
-    if total_count > max_points
-      step = total_count.to_f / max_points
-      indexes = (0...total_count).step(step).map(&:to_i)
-      @filtered_measurements = @daily_measurements.to_a.values_at(*indexes).compact
-    else
-      @filtered_measurements = @daily_measurements.to_a
-    end
-
+    @filtered_measurements = @device.measurements.sampled_for_day(selected_day, 20)
     @monthly_temperatures=@device.measurements.group_by_month(:created_at, format: "%B").average(:temperature)
     @monthly_humidities=@device.measurements.group_by_month(:created_at, format: "%B").average(:humidity)
 
