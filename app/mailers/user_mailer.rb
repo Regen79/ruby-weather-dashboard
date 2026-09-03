@@ -13,7 +13,7 @@ class UserMailer < ApplicationMailer
     api_instance.api_client.config.api_key['api-key'] = api_key
 
     send_smtp_email = Brevo::SendSmtpEmail.new(
-      sender: { email: "Support@weatherdashboard.com", name: "Weather Dashboard" },
+      sender: { email: "krzysztofmurias02@gmail.com", name: "Weather Dashboard" },
       to: [{ email: @user.email_address }],
       subject: "Activate your account",
       html_content: "<p>Hello!</p><p>Click the link below to activate your account:</p><p><a href='#{verification_url}'>Activate account</a></p>"
