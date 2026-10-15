@@ -1,3 +1,16 @@
-<h1>Your Profile</h1>
-<p>Email: <%= @user.email_address %></p>
-<%= link_to "Change your password", edit_profile_path %>
+<% content_for :title, "Your Profile" %>
+<div class="dashboard-container">
+    <div class="content-header">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Your Profile</h1>
+        </div>
+    </div>
+    
+    <div class="device-details-card">
+        <p><strong>Email:</strong> <%= @user.email_address %></p>   
+        
+        <div class="device-show-actions">
+            <%= link_to "Change your password", edit_profile_path, class: "btn-primary" %>
+        </div>
+    </div>
+</div>
