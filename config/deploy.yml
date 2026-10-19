@@ -19,6 +19,7 @@ servers:
 proxy:
   ssl: true
   host: crisweatherdashboard.duckdns.org
+  app_port: 3000
 
 # Container registry credentials and authentication settings
 registry:
