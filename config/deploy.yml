@@ -1,0 +1,38 @@
+# Application name identifier used for container naming and scoping
+service: ruby-weather-dashboard
+
+# Docker Hub registry path for the application container image
+image: regen79/ruby-weather-dashboard
+
+# SSH configuration and private key mapping for authentication
+ssh:
+  user: ubuntu
+  keys:
+    - "~/.ssh/oracle_key.key"
+
+# Deployment target server IP addresses for the web tier
+servers:
+  web:
+    - 129.151.223.134
+
+# Kamal proxy configuration (SSL disabled until a domain name is assigned)
+proxy:
+  ssl: false
+
+# Container registry credentials and authentication settings
+registry:
+  username: regen79
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Target server architecture configuration for image building (x86_64 / AMD64)
+builder:
+  arch: amd64
+
+# Encrypted secret variables injected into the remote container runtime
+env:
+  secret:
+    - RAILS_MASTER_KEY
+
+volumes:
+  - "ruby-weather-dashboard-storage:/rails/storage"
