@@ -17,7 +17,8 @@ servers:
 
 # Kamal proxy configuration (SSL disabled until a domain name is assigned)
 proxy:
-  ssl: false
+  ssl: true
+  host: crisweatherdashboard.duckdns.org
 
 # Container registry credentials and authentication settings
 registry:
