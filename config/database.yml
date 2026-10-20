@@ -19,5 +19,7 @@ production:
   primary:
     <<: *default
     database: ruby_weather_dashboard_production
-    username: ruby_weather_dashboard
+    username: postgres
     password: <%= ENV["RUBY_WEATHER_DASHBOARD_DATABASE_PASSWORD"] %>
+    host: ruby-weather-dashboard-db
+    port: 5432
