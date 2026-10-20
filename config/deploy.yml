@@ -43,7 +43,7 @@ volumes:
 accessories:
   db:
     image: postgres:15
-    host: 129.151.223.134
+    host: 172.17.0.1
     port: "5432:5432"
     env:
       clear:
