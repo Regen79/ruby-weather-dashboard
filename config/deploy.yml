@@ -35,6 +35,7 @@ builder:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - RUBY_WEATHER_DASHBOARD_DATABASE_PASSWORD
 
 volumes:
   - "ruby-weather-dashboard-storage:/rails/storage"
