@@ -39,10 +39,10 @@
         <tbody>
           <% @measurements.order(created_at: :desc).each do |measurement| %>
             <tr>
-              <td><%= link_to measurement.created_at.strftime("%Y-%m-%d"), device_measurement_path(@device, measurement), class: "row-link" %></td>
-              <td><%= link_to measurement.created_at.strftime("%H:%M:%S"), device_measurement_path(@device, measurement), class: "row-link" %></td>
-              <td><%= link_to measurement.temperature, device_measurement_path(@device, measurement), class: "row-link" %></td>
-              <td><%= link_to measurement.humidity, device_measurement_path(@device, measurement), class: "row-link" %></td>
+              <td><%= measurement.created_at.strftime("%Y-%m-%d")%></td>
+              <td><%= measurement.created_at.strftime("%H:%M:%S")%></td>
+              <td><%= measurement.temperature%></td>
+              <td><%= measurement.humidity%></td>
             </tr>
           <% end %>
         </tbody>
