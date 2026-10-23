@@ -4,8 +4,9 @@ class MeasurementsController < ApplicationController
 
   # GET /measurements or /measurements.json
   def index
-    @lastest_temperature=Temperature.last
-    @lastest_humidity=Humidity.last
+    @lastest_temperature=@device.measurements.order(created_at: :desc).pick(:temperature)
+    @lastest_humidity=@device.measurements.order(created_at: :desc).pick(:humidity)
+    
     @measurements = @device.measurements
     if params[:day].present?
       selected_day=Date.parse(params[:day])

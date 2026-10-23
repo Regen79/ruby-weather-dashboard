@@ -9,14 +9,21 @@
     <h1 class="dashboard-title">Measurements for <%= @device.name %></h1>
   </div>
 
-  <div class="">
-    <h1 class="">Temperature <%= @lastest_temperature%></h1>
+  <div class="last-measurements-container">
+    <div class="last-measurements-card">
+      <h2 class="last-measurements-title">Actual Temperature: </h2>
+      <div class="last-measurements-number temperature"> 
+        <%= @lastest_temperature  || "--" %>°C
+      </div>
+    </div>
+
+    <div class="last-measurements-card">
+      <h2 class="last-measurements-title">Actual Humidity: </h2>
+      <div class="last-measurements-number humidity"> 
+        <%= @lastest_humidity  || "--" %>%
+      </div>
+    </div>
   </div>
-  
-  <div class="">
-    <h1 class="">Humidity <%= @lastest_humidity%></h1>
-  </div>
-  
 
   <div class="measurement-card">
     <div class="table-container">
@@ -41,10 +48,6 @@
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div class="dashboard-header" style="margin-top: 40px;">
-    <h2 class="dashboard-title">Measurement Plots</h2>
   </div>
 
   <div class="day-filters">
