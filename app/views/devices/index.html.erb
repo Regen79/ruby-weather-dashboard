@@ -13,9 +13,13 @@
   <div class="devices-grid" id="devices">
     <% @devices.each do |device| %>
       <div class="device-card">
-        <%= render device %>
+        <%= link_to device_measurements_path(device), class: "device-card-content" do %>
+          <%= render device %>
+        <% end %>
+      
         <div class="device-actions">
-          <%= link_to "Show this device", device, class: "btn-secondary" %>
+          <%= link_to "Show device", device_path(device), class: "btn-secondary" %>
+          <%= button_to "Destroy device", device, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-danger" %>
         </div>
       </div>
     <% end %>
