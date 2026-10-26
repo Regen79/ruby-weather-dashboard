@@ -15,14 +15,13 @@
       <div class="device-card">
         <%= link_to device_measurements_path(device), class: "device-card-content" do %>
           <div class="device-card-name">
-            <span class="device-label">Name:</span>
             <span class="device-value"><%= device.name %></span>
           </div>
         <% end %>
       
         <div class="device-actions">
-          <%= link_to "Show device", device_path(device), class: "btn-secondary" %>
-          <%= button_to "Destroy device", device, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-danger" %>
+          <%= link_to "Show", device_path(device), class: "btn-secondary" %>
+          <%= button_to "Delete", device, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-danger" %>
         </div>
       </div>
     <% end %>
