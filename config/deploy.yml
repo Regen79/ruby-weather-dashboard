@@ -15,6 +15,10 @@ servers:
   web:
     - 129.151.223.134
 
+# Boot timeouts configuration to allow database migrations during container start
+deploy_timeout: 120
+drain_timeout: 30
+
 # Kamal proxy configuration (SSL disabled until a domain name is assigned)
 proxy:
   ssl: true
@@ -35,6 +39,21 @@ builder:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
 
 volumes:
   - "ruby-weather-dashboard-storage:/rails/storage"
+
+accessories:
+  db:
+    image: postgres:15
+    host: 129.151.223.134          
+    port: "5432:5432"           #Postgres defauflt port
+    env:
+      clear:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: ruby_weather_dashboard_production
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - /home/ubuntu/postgres-data:/var/lib/postgresql/data

@@ -1,29 +1,49 @@
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: postgres
+  host: 127.0.0.1
+  port: 5432
   timeout: 5000
 
 development:
   <<: *default
-  database: storage/development.sqlite3
+  database: ruby_weather_dashboard_development
 
 test:
   <<: *default
-  database: storage/test.sqlite3
+  database: ruby_weather_dashboard_test
   
 production:
   primary:
     <<: *default
-    database: storage/production.sqlite3
-  cache:
-    <<: *default
-    database: storage/production_cache.sqlite3
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *default
-    database: storage/production_queue.sqlite3
-    migrations_paths: db/queue_migrate
+    database: ruby_weather_dashboard_production
+    username: postgres
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: 172.17.0.1                                  #Docker ip
+    port: 5432
   cable:
     <<: *default
-    database: storage/production_cable.sqlite3
+    database: ruby_weather_dashboard_production
+    username: postgres
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: 172.17.0.1
+    port: 5432
     migrations_paths: db/cable_migrate
+  queue:
+    <<: *default
+    database: ruby_weather_dashboard_production
+    username: postgres
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: 172.17.0.1
+    port: 5432
+    migrations_paths: db/queue_migrate
+  cache:
+    <<: *default
+    database: ruby_weather_dashboard_production
+    username: postgres
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: 172.17.0.1
+    port: 5432
+    migrations_paths: db/cache_migrate
