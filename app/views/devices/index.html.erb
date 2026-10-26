@@ -14,7 +14,10 @@
     <% @devices.each do |device| %>
       <div class="device-card">
         <%= link_to device_measurements_path(device), class: "device-card-content" do %>
-          <%= render device %>
+          <div class="device-card-name">
+            <span class="device-label">Name:</span>
+            <span class="device-value"><%= device.name %></span>
+          </div>
         <% end %>
       
         <div class="device-actions">

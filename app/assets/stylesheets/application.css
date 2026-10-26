@@ -323,13 +323,34 @@
   .device-card strong, .device-card b {
     color: #e2e8f0;
   }
+  
+ .device-card-name {
+    margin: 8px 0 16px 0;
+    line-height: 1.4;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
 
+  .device-label {
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .device-value {
+    color: #f8fafc;
+    font-size: 20px;
+    font-weight: 600;
+  }
   .device-actions {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid #334155;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between; 
     gap: 12px;
   }
@@ -337,6 +358,7 @@
   .device-actions form, 
   .device-actions .button-to-form {
     display: inline-block;
+    align-items: center;
     margin: 0;
   }
 
@@ -360,7 +382,7 @@
   .btn-secondary {
     color: #f59e0b;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
   }
 
@@ -436,11 +458,13 @@
     border: none !important;
     border-radius: 0 !important;
     font-weight: 500 !important;
-    font-size: 14px !important;
+    font-size: 16px !important; 
     cursor: pointer;
     box-shadow: none !important;
     display: inline !important;
-    text-decoration: none !important; 
+    text-decoration: none !important;
+    line-height: 1 !important;
+    vertical-align: baseline !important;
   }
 
   .btn-danger:hover {
