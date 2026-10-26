@@ -16,9 +16,8 @@ servers:
     - 129.151.223.134
 
 # Boot timeouts configuration to allow database migrations during container start
-deploy:
-  deploy_timeout: 120
-  drain_timeout: 30
+deploy_timeout: 120
+drain_timeout: 30
 
 # Kamal proxy configuration (SSL disabled until a domain name is assigned)
 proxy:
@@ -58,4 +57,3 @@ accessories:
         - POSTGRES_PASSWORD
     directories:
       - /home/ubuntu/postgres-data:/var/lib/postgresql/data
-
