@@ -23,3 +23,11 @@ production:
     password: <%= ENV["POSTGRES_PASSWORD"] %>
     host: 172.17.0.1                                  #Docker ip
     port: 5432
+  cable:
+    <<: *default
+    database: ruby_weather_dashboard_production
+    username: postgres
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: 172.17.0.1
+    port: 5432
+    migrations_paths: db/cable_migrate
