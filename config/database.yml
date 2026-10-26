@@ -20,6 +20,6 @@ production:
     <<: *default
     database: ruby_weather_dashboard_production
     username: postgres
-    password: <%= ENV["RUBY_WEATHER_DASHBOARD_DATABASE_PASSWORD"] %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
     host: 172.17.0.1                                  #Docker ip
     port: 5432

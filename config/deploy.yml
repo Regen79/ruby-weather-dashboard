@@ -35,7 +35,7 @@ builder:
 env:
   secret:
     - RAILS_MASTER_KEY
-    - RUBY_WEATHER_DASHBOARD_DATABASE_PASSWORD
+    - POSTGRES_PASSWORD
 
 volumes:
   - "ruby-weather-dashboard-storage:/rails/storage"
@@ -50,6 +50,6 @@ accessories:
         POSTGRES_USER: postgres
         POSTGRES_DB: ruby_weather_dashboard_production
       secret:
-        - RUBY_WEATHER_DASHBOARD_DATABASE_PASSWORD
+        - POSTGRES_PASSWORD
     directories:
-      - data:/var/lib/postgresql/data
+      - /home/ubuntu/postgres-data:/var/lib/postgresql/data
