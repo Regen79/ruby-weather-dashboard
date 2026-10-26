@@ -16,7 +16,7 @@ servers:
     - 129.151.223.134
 
 # Boot timeouts configuration to allow database migrations during container start
-boot:
+deploy:
   deploy_timeout: 120
   drain_timeout: 30
 
