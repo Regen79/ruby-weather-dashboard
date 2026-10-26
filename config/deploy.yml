@@ -53,3 +53,6 @@ accessories:
         - POSTGRES_PASSWORD
     directories:
       - /home/ubuntu/postgres-data:/var/lib/postgresql/data
+
+deploy_timeout: 120s
+drain_timeout: 30s
