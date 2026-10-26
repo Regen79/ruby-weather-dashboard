@@ -15,13 +15,16 @@ servers:
   web:
     - 129.151.223.134
 
+# Boot timeouts configuration to allow database migrations during container start
+boot:
+  deploy_timeout: 120
+  drain_timeout: 30
+
 # Kamal proxy configuration (SSL disabled until a domain name is assigned)
 proxy:
   ssl: true
   host: crisweatherdashboard.duckdns.org
   app_port: 3000
-  deploy_timeout: 120
-  drain_timeout: 30
 
 # Container registry credentials and authentication settings
 registry:
