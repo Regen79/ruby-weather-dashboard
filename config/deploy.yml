@@ -20,6 +20,8 @@ proxy:
   ssl: true
   host: crisweatherdashboard.duckdns.org
   app_port: 3000
+  deploy_timeout: 120
+  drain_timeout: 30
 
 # Container registry credentials and authentication settings
 registry:
@@ -54,5 +56,3 @@ accessories:
     directories:
       - /home/ubuntu/postgres-data:/var/lib/postgresql/data
 
-deploy_timeout: 120s
-drain_timeout: 30s
