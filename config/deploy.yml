@@ -14,6 +14,10 @@ ssh:
 servers:
   web:
     - 129.151.223.134
+  job:
+    hosts:
+      - 129.151.223.134
+    cmd: bin/jobs
 
 # Boot timeouts configuration to allow database migrations during container start
 deploy_timeout: 120
