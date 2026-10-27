@@ -1,11 +1,16 @@
 <% content_for :title, "New device" %>
 
-<h1>New device</h1>
+<div class="dashboard-container">
+  <div class="content-header">    
+    <div class="back-link-container">
+      <%= link_to "← Return", devices_path, class: "btn-back" %>
+    </div>
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">New device</h1>
+    </div>
+  </div>
 
-<%= render "form", device: @device %>
-
-<br>
-
-<div>
-  <%= link_to "Back to devices", devices_path %>
+  <div class="device-details-card">
+    <%= render "form", device: @device %>
+  </div>
 </div>

@@ -1,20 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<div class="dashboard-container">
+  <div class="content-header">
+    <% if notice.present? %>
+      <p class="flash-notice"><%= notice %></p>
+    <% end %>
+    <div class="back-link-container">
+      <%= link_to "← Return", devices_path, class: "btn-back" %>
+    </div>
 
-<%= render @device %>
-
-<% if flash[:api_key].present? %>
-  <div>
-    <strong>API token for this device:</strong><br>
-    <code><%= @device.api_key %></code>
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Device details</h1>
+    </div>
   </div>
-<% end %>
 
-<div>
-  <p>
-    <%= link_to "View measurements", device_measurements_path(@device) %>
-  </p>
-  <%= link_to "Edit this device", edit_device_path(@device) %> |
-  <%= link_to "Back to devices", devices_path %>
+  <div class="device-details-card">
+    <div class="device-info">
+      <%= render @device %>
+    </div>
 
-  <%= button_to "Destroy this device", @device, method: :delete %>
-</div>
+    <% if flash[:api_key].present? %>
+      <div class="api-key-box">
+        <strong>API token for this device:</strong><br>
+        <code><%= @device.api_key %></code>
+      </div>
+    <% end %>
+
+    <div class="device-show-actions">
+      <%= link_to "View measurements", device_measurements_path(@device), class: "btn-primary" %>
+      <%= link_to "Edit this device", edit_device_path(@device), class: "btn-secondary" %>
+      <%= button_to "Destroy this device", @device, method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn-danger" %>
+    </div>
+  </div>
+</div>  

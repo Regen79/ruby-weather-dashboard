@@ -1,12 +1,18 @@
 <% content_for :title, "Editing measurement" %>
 
-<h1>Editing measurement</h1>
+<div class="dashboard-container">
+  <div class="content-header">  
+    <div class="back-link-container">
+      <%= link_to "← Return", device_measurements_path(@device), class: "btn-back" %>
+    </div>
+  
 
-<%= render "form", measurement: @measurement %>
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Editing measurement</h1>
+    </div>
+  </div>
 
-<br>
-
-<div>
-  <%= link_to "Show this measurement", device_measurement_path(@device, @measurement) %> |
-  <%= link_to "Back to measurements", device_measurements_path(@device) %>
+  <div class="device-details-card">
+    <%= render "form", measurement: @measurement %>
+  </div>
 </div>
