@@ -14,10 +14,6 @@ ssh:
 servers:
   web:
     - 129.151.223.134
-  job:
-    hosts:
-      - 129.151.223.134
-    cmd: bin/jobs
 
 # Boot timeouts configuration to allow database migrations during container start
 deploy_timeout: 120
@@ -41,6 +37,9 @@ builder:
 
 # Encrypted secret variables injected into the remote container runtime
 env:
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+    APP_HOST: crisweatherdashboard.duckdns.org
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
@@ -50,9 +49,9 @@ volumes:
 
 accessories:
   db:
+    port: "127.0.0.1:5432:5432"
     image: postgres:15
     host: 129.151.223.134          
-    port: "5432:5432"           #Postgres defauflt port
     env:
       clear:
         POSTGRES_USER: postgres
