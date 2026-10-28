@@ -69,7 +69,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:                        "smtp.gmail.com",
     port:                            587,
-    domain:                          "crisweatherdashboard.duckdns.org",
+    domain:                          "weather.crislabs.com",
     user_name:                       Rails.application.credentials.dig(:smtp, :user_name),
     password:                        Rails.application.credentials.dig(:smtp, :password),
     authentication:                  :plain,

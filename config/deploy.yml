@@ -22,7 +22,7 @@ drain_timeout: 30
 # Kamal proxy configuration (SSL disabled until a domain name is assigned)
 proxy:
   ssl: true
-  host: crisweatherdashboard.duckdns.org
+  host: weather.crislabs.com
   app_port: 3000
 
 # Container registry credentials and authentication settings
@@ -39,7 +39,7 @@ builder:
 env:
   clear:
     SOLID_QUEUE_IN_PUMA: true
-    APP_HOST: crisweatherdashboard.duckdns.org
+    APP_HOST: weather.crislabs.com
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
