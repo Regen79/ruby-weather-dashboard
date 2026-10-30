@@ -3,20 +3,30 @@
     
     <h2 style="color: #f8fafc; margin-top: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.025em;">Activate your account</h2>
     
-    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">Hello,</p>
+    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">Hello <%= @user&.email_address || "there" %>,</p>
     
-    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">Thank you for signing up! Please click the button below to activate your account:</p>
+
+    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">
+      Welcome to Weather Dashboard! We're excited to have you on board. To get started and fully activate your account, please confirm your email address by clicking the button below:
+    </p>
     
     <div style="text-align: center; margin: 35px 0;">
       <%= link_to "Activate Account", email_verification_url(token: @token), style: "background-color: #f59e0b; color: #0f172a; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 15px; display: inline-block; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);" %>
     </div>
     
+
+    <p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">
+      If the button doesn't work, copy and paste this link into your browser:<br>
+      <a href="<%= email_verification_url(token: @token) %>" style="color: #38bdf8; word-break: break-all; text-decoration: none;"><%= email_verification_url(token: @token) %></a>
+    </p>
+    
     <p style="color: #94a3b8; font-size: 14px; line-height: 1.5;">This link will expire in <strong style="color: #e2e8f0;">2 days</strong>.</p>
     
     <hr style="border: none; border-top: 1px solid #334155; margin: 30px 0;">
     
+
     <p style="font-size: 13px; color: #64748b; line-height: 1.4;">
-      If you didn't create an account with us, please ignore this email.
+      If you didn't create an account with us, please ignore this email. No action is required on your part.
     </p>
     
   </div>

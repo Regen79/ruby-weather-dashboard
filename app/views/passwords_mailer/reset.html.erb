@@ -3,20 +3,27 @@
     
     <h2 style="color: #f8fafc; margin-top: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.025em;">Reset your password</h2>
     
-    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">Hello,</p>
+    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">Hello <%= @user.email_address %>,</p>
     
-    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">We received a request to reset your password for your account. If you made this request, click the button below to choose a new password:</p>
+    <p style="color: #94a3b8; font-size: 15px; line-height: 1.5;">
+      We received a request to reset the password for your Weather Dashboard account. If you made this request, please click the button below to set a new password:
+    </p>
     
     <div style="text-align: center; margin: 35px 0;">
       <%= link_to "Reset Password", edit_password_url(@user.password_reset_token), style: "background-color: #f59e0b; color: #0f172a; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 15px; display: inline-block; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);" %>
     </div>
+    
+    <p style="color: #64748b; font-size: 13px; line-height: 1.5; margin-bottom: 25px;">
+      If the button doesn't work, copy and paste this link into your browser:<br>
+      <a href="<%= edit_password_url(@user.password_reset_token) %>" style="color: #38bdf8; word-break: break-all; text-decoration: none;"><%= edit_password_url(@user.password_reset_token) %></a>
+    </p>
     
     <p style="color: #94a3b8; font-size: 14px; line-height: 1.5;">This link will expire in <strong style="color: #e2e8f0;"><%= distance_of_time_in_words(0, @user.password_reset_token_expires_in) %></strong>.</p>
     
     <hr style="border: none; border-top: 1px solid #334155; margin: 30px 0;">
     
     <p style="font-size: 13px; color: #64748b; line-height: 1.4;">
-      If you didn't request a password reset, please ignore this email. Your password will remain unchanged.
+      If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged and your account is secure.
     </p>
     
   </div>
