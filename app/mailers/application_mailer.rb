@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: Rails.application.credentials.dig(:smtp, :user_name)
+  default from: email_address_with_name("noreply@crislabs.com", "Weather Dashboard")
+    reply_to: "contact@crislabs.com"
   layout "mailer"
 end
