@@ -1,0 +1,62 @@
+# Application name identifier used for container naming and scoping
+service: ruby-weather-dashboard
+
+# Docker Hub registry path for the application container image
+image: regen79/ruby-weather-dashboard
+
+# SSH configuration and private key mapping for authentication
+ssh:
+  user: ubuntu
+  keys:
+    - "~/.ssh/oracle_key.key"
+
+# Deployment target server IP addresses for the web tier
+servers:
+  web:
+    - 129.151.223.134
+
+# Boot timeouts configuration to allow database migrations during container start
+deploy_timeout: 120
+drain_timeout: 30
+
+# Kamal proxy configuration (SSL disabled until a domain name is assigned)
+proxy:
+  ssl: true
+  host: weather.crislabs.com
+  app_port: 3000
+
+# Container registry credentials and authentication settings
+registry:
+  username: regen79
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Target server architecture configuration for image building (x86_64 / AMD64)
+builder:
+  arch: amd64
+
+# Encrypted secret variables injected into the remote container runtime
+env:
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+    APP_HOST: weather.crislabs.com
+  secret:
+    - RAILS_MASTER_KEY
+    - POSTGRES_PASSWORD
+
+volumes:
+  - "ruby-weather-dashboard-storage:/rails/storage"
+
+accessories:
+  db:
+    port: "127.0.0.1:5432:5432"
+    image: postgres:15
+    host: 129.151.223.134          
+    env:
+      clear:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: ruby_weather_dashboard_production
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - /home/ubuntu/postgres-data:/var/lib/postgresql/data

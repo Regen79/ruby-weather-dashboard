@@ -1,5 +1,7 @@
 class RegistrationsController < ApplicationController
   allow_unauthenticated_access
+  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_registration_path, alert: "Try again later." }
+
   def new
     @user = User.new
   end
@@ -7,7 +9,7 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
       if @user.save
-        UserMailer.verification(@user).deliver_now
+        UserMailer.verification(@user).deliver_later
         redirect_to new_session_path, notice: "Account created! Please check your email."
       else
         render :new, status: :unprocessable_content
